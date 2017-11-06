@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ThumbnailSharp.Cli
+﻿namespace ThumbnailSharp.Cli
 {
     class Runner
     {
@@ -15,8 +9,10 @@ namespace ThumbnailSharp.Cli
          *  format: [Jpeg|Bmp|Png|Gif|Icon|Tiff|Exif|Wmf|Emf]
          *  
          */
+
         static void Main(string[] args)
         {
+            new Controller().HandleCommand(args);
         }
     }
 }
