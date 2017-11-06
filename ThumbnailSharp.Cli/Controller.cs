@@ -131,8 +131,6 @@ namespace ThumbnailSharp.Cli
             bool success = false;
             try
             {
-
-
                 using (Stream sourceStream = new ThumbnailCreator().CreateThumbnailStream(size, source, format))
                 {
                     if (sourceStream != null)

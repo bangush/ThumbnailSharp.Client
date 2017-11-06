@@ -1,0 +1,78 @@
+﻿<mahapps:MetroWindow
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:thumb="clr-namespace:ThumbnailSharp.Gui.Thumbs"
+        xmlns:mahapps="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:local="clr-namespace:ThumbnailSharp.Gui" Icon="thumb.ico"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" x:Class="ThumbnailSharp.Gui.MainWindow"
+        mc:Ignorable="d"  Title="ThumbnailSharp.GUI" Height="451" Width="511.5" GlowBrush="RoyalBlue"
+        MinHeight="360" MinWidth="451">
+    <mahapps:MetroWindow.Resources>
+        <local:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </mahapps:MetroWindow.Resources>
+    <mahapps:MetroWindow.DataContext>
+        <thumb:ThumbViewModel Error="ThumbViewModel_Error" Completed="ThumbViewModel_Completed"/>
+    </mahapps:MetroWindow.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Image Source="core-logo.png" Margin="5" Height="60" HorizontalAlignment="Left"/>
+        <Grid Grid.Row="1" IsEnabled="{Binding IsEditingActive}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="5">
+                <TextBlock Text="Thumbnail source option:" FontSize="16" Margin="5" VerticalAlignment="Center" Width="180"/>
+                <ComboBox ItemsSource="{Binding Options}" SelectedItem="{Binding ThumbModel.Option}" 
+                      Margin="5" Width="150" IsEditable="False" SelectedIndex="0">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SelectionChanged">
+                            <i:InvokeCommandAction Command="{Binding TriggerOptionCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </ComboBox>
+            </StackPanel>
+            <DockPanel Grid.Row="1" Margin="5" LastChildFill="False">
+                <TextBlock Text="Specify thumbnail size:" Margin="5" DockPanel.Dock="Left" VerticalAlignment="Center" FontSize="16" Width="180" />
+                <mahapps:NumericUpDown Value="{Binding ThumbModel.ThumbnailSize}" Minimum="1" Width="150" DockPanel.Dock="Left" Margin="5"/>
+            </DockPanel>
+            <DockPanel Grid.Row="2" Margin="5" LastChildFill="False">
+                <TextBlock Text="Specify image format:" Margin="5" DockPanel.Dock="Left" VerticalAlignment="Center" FontSize="16" Width="180" />
+                <ComboBox SelectedItem="{Binding ThumbModel.Format}" ItemsSource="{Binding Formats}" SelectedIndex="0"
+                      Width="150" DockPanel.Dock="Left" Margin="5"/>
+            </DockPanel>
+
+            <DockPanel Grid.Row="3" Margin="5" Visibility="{Binding IsLocal, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <Button Content="Browse File" Width="85" Height="28" x:Name="buttonBrowse" Click="ButtonBrowseHandler" DockPanel.Dock="Right" Margin="5"/>
+                <TextBox x:Name="textboxLocation" Text="{Binding ThumbModel.Location, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" mahapps:TextBoxHelper.Watermark="Please specify image file" IsReadOnly="True" Margin="5"/>
+            </DockPanel>
+            <TextBox Text="{Binding ThumbModel.Location, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                 mahapps:TextBoxHelper.Watermark="Please input valid absolute url" 
+                 mahapps:TextBoxHelper.ClearTextButton="True"
+                 Margin="10" Grid.Row="3" Visibility="{Binding IsInternet, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <DockPanel Grid.Row="4" Margin="5">
+                <Button Content="Browse" Width="85" Height="28" x:Name="buttonBrowseTarget" Click="ButtonBrowseTargetHandler" DockPanel.Dock="Right" Margin="5"/>
+                <TextBox x:Name="textboxTargetLocation" Text="{Binding ThumbModel.TargetLocation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" mahapps:TextBoxHelper.Watermark="Please specify thumbnail location" IsReadOnly="True" Margin="5"/>
+            </DockPanel>
+            <Button Command="{Binding CreateThumbnailCommand}" BorderBrush="RoyalBlue" BorderThickness="1.5" mahapps:ButtonHelper.CornerRadius="15" 
+                    Content="Create Thumbnail" Width="120" Height="30" Margin="10" Grid.Row="5" HorizontalAlignment="Left"/>
+        </Grid>
+        <mahapps:MetroProgressBar IsIndeterminate="{Binding IsLoading}" Background="Transparent"
+                                  Height="30" Grid.Row="2" Margin="5" Foreground="RoyalBlue"/>
+        <TextBlock Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="5">
+            Created by: 
+            <Hyperlink NavigateUri="https://twitter.com/mirzaevolution" RequestNavigate="GoToTwitter">Mirza Ghulam Rasyid</Hyperlink>
+        </TextBlock>
+    </Grid>
+</mahapps:MetroWindow>

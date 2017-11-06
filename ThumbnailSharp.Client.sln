@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThumbnailSharp.Cli", "ThumbnailSharp.Cli\ThumbnailSharp.Cli.csproj", "{6B474067-F2FC-424F-B6D7-4A152482ABED}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThumbnailSharp.Gui", "ThumbnailSharp.Gui\ThumbnailSharp.Gui.csproj", "{0A8F8716-6E72-45CC-ADDB-4C5FD2D07744}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{6B474067-F2FC-424F-B6D7-4A152482ABED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6B474067-F2FC-424F-B6D7-4A152482ABED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6B474067-F2FC-424F-B6D7-4A152482ABED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A8F8716-6E72-45CC-ADDB-4C5FD2D07744}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A8F8716-6E72-45CC-ADDB-4C5FD2D07744}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A8F8716-6E72-45CC-ADDB-4C5FD2D07744}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A8F8716-6E72-45CC-ADDB-4C5FD2D07744}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
