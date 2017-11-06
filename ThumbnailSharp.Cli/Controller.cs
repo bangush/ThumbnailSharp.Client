@@ -1,143 +1,209 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace ThumbnailSharp.Cli
 {
     public class Controller
     {
         public void HandleCommand(string[] args)
         {
-            if(args.Length!=4)
+            if (args.Length != 5)
             {
-                DisplayCommand();
+                DisplayCommandText();
             }
             else
             {
                 ProcessCommand(args);
             }
         }
-        private void DisplayCommand()
+        private void DisplayCommandText()
         {
-            Console.WriteLine("----------------------------------------------");
-            Console.WriteLine("Thumbnail Sharp CLI");
-            Console.WriteLine("Created by: Mirza Ghulam Rasyid");
-            Console.WriteLine("----------------------------------------------\n");
-            Console.WriteLine("Thumbnail.exe <source-image-location> <target-thumbnail-location> <thumbnail-size> <format>\n");
-            Console.WriteLine("> source-image-location     : Image file location (ex: C:\\myimage.jpg)");
-            Console.WriteLine("> target-thumbnail-location : Location where thumbnail will be saved to (C:\\mythumbnail.jpg)");
-            Console.WriteLine("> thumbnail-size            : The size of thumbnail");
-            Console.WriteLine("> format                    : Thumbnail format -> [Jpeg|Bmp|Png|Gif|Icon|Tiff|Exif|Wmf|Emf]");
+            Console.WriteLine(" ----------------------------------------------");
+            Console.WriteLine("             Thumbnail Sharp CLI");
+            Console.WriteLine("        Created by: Mirza Ghulam Rasyid");
+            Console.WriteLine(" ----------------------------------------------\n");
+            Console.WriteLine(" Thumbnail.exe <option> <source-image-location> <target-thumbnail-location> <thumbnail-size> <format>\n");
+            Console.WriteLine(" > option                    : Source of image => [local|internet]");
+            Console.WriteLine(" > source-image-location     : If option is set to `local` then specify local file location. (eg: C:\\myimage.jpg)");
+            Console.WriteLine("                               If option is set to `internet` then specify valid url. (eg: https://mywebsite/myimage.jpg)");
+            Console.WriteLine(" > target-thumbnail-location : Location where thumbnail will be saved to. (eg: C:\\mythumbnail.jpg)");
+            Console.WriteLine(" > thumbnail-size            : The size of thumbnail.");
+            Console.WriteLine(" > format                    : Thumbnail processing format => [Jpeg|Bmp|Png|Gif|Tiff]");
         }
+
         private void ProcessCommand(string[] args)
         {
             string[] formats = new string[]
             {
-                "jpeg","bmp","png","gif","icon","tiff","exif","wmf","emf"
+                "jpeg","bmp","png","gif","tiff"
             };
-            string source = args[0];
-            string target = args[1];
-            if (String.IsNullOrEmpty(source))
-                Console.WriteLine("`source-image-location` cannot be empty");
+            string[] options = new string[]
+            {
+                "local","internet"
+            };
+            string option = args[0];
+            option = option.ToLower();
+            if (!options.Any(x => x == option))
+                Console.WriteLine("`option` is invalid");
             else
             {
-                if(!File.Exists(source))
-                    Console.WriteLine("`source-image-location` cannot be found");
-                else
+                string source = args[1];
+                string target = args[2];
+                uint size;
+                Format format = Format.Jpeg;
+                
+                if (option=="local")
                 {
-                    if(String.IsNullOrEmpty(target))
-                        Console.WriteLine("`target-thumbnail-location` cannot be empty");
+                    if (!File.Exists(source))
+                        Console.WriteLine("`source-image-location` cannot be found");
                     else
                     {
                         if (!Directory.Exists(Path.GetDirectoryName(target)))
                             Console.WriteLine("Directory for `target-thumbnail-location` cannot be found");
                         else
                         {
-                            uint size;
-                            if (!uint.TryParse(args[2], out size))
+                            if (!uint.TryParse(args[3], out size))
                                 Console.WriteLine("`thumbnail-size` is invalid");
                             else
                             {
-                                string formatStr = args[3];
-                                if (String.IsNullOrEmpty(formatStr))
-                                    Console.WriteLine("`format` cannot be empty");
+                                string formatStr = args[4];
+                                formatStr = formatStr.ToLower();
+                                if (!formats.Any(x => x == formatStr))
+                                    Console.WriteLine("`format` is invalid");
                                 else
                                 {
-                                    formatStr = formatStr.ToLower();
-                                    if (!formats.Contains(formatStr))
-                                        Console.WriteLine("`format` is invalid");
-                                    else
-                                    {
-                                        Format format = Format.Jpeg;
-                                        switch(formatStr)
-                                        {
-                                            case "bmp":
-                                                format = Format.Bmp;
-                                                break;
-                                            case "png":
-                                                format = Format.Png;
-                                                break;
-                                            case "gif":
-                                                format = Format.Gif;
-                                                break;
-                                            case "icon":
-                                                format = Format.Icon;
-                                                break;
-                                            case "tiff":
-                                                format = Format.Tiff;
-                                                break;
-                                            case "exif":
-                                                format = Format.Exif;
-                                                break;
-                                            case "wmf":
-                                                format = Format.Wmf;
-                                                break;
-                                            case "emf":
-                                                format = Format.Emf;
-                                                break;
-                                        }
-                                        
-                                    }
+                                    format = GetFormat(formatStr);
+                                    ExecuteCommand(source, target, size, format);
                                 }
                             }
                         }
                     }
                 }
+                else if(option == "internet")
+                {
+                    if (!Uri.IsWellFormedUriString(source,UriKind.Absolute))
+                        Console.WriteLine("Please specify valid url address with scheme. Eg: http://address.com/data.jpg or https://address.com/data.jpg");
+                    else
+                    {
+                        if (!uint.TryParse(args[3], out size))
+                            Console.WriteLine("`thumbnail-size` is invalid");
+                        else
+                        {
+                            string formatStr = args[4];
+                            formatStr = formatStr.ToLower();
+                            if (!formats.Any(x => x == formatStr))
+                                Console.WriteLine("`format` is invalid");
+                            else
+                            {
+                                format = GetFormat(formatStr);
+                                ExecuteCommand(new Uri(source, UriKind.Absolute), target, size, format);
+                            }
+                        }
+                    }
+                }
+               
             }
+            
         }
-        private void ExecutedCommand(string source, string target, uint size, Format format)
+        private Format GetFormat(string formatStr)
         {
+            Format format = Format.Jpeg;
+            switch (formatStr)
+            {
+                case "bmp":
+                    format = Format.Bmp;
+                    break;
+                case "png":
+                    format = Format.Png;
+                    break;
+                case "gif":
+                    format = Format.Gif;
+                    break;
+                case "tiff":
+                    format = Format.Tiff;
+                    break;
+            }
+            return format;
+        }
+        private void ExecuteCommand(string source, string target, uint size, Format format)
+        {
+            Console.WriteLine("Processing...");
             bool success = false;
             try
             {
-                using (FileStream fs = new FileStream(target, FileMode.OpenOrCreate, FileAccess.Write))
+
+
+                using (Stream sourceStream = new ThumbnailCreator().CreateThumbnailStream(size, source, format))
                 {
-                    Stream sourceStream = new ThumbnailCreator().CreateThumbnailStream(size, source, format);
                     if (sourceStream != null)
                     {
-                        if (sourceStream.Position != 0)
-                            sourceStream.Position = 0;
+                        using (FileStream fs = new FileStream(target, FileMode.OpenOrCreate, FileAccess.Write))
+                        {
+                            if (sourceStream.Position != 0)
+                                sourceStream.Position = 0;
 
-                        sourceStream.CopyTo(fs);
-                        success = true;
+                            sourceStream.CopyTo(fs);
+                            success = true;
+                        }
                     }
                     else
                     {
                         success = false;
                     }
                 }
+
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
                 success = false;
             }
             finally
             {
-                if(success)
+                if (success)
+                    Console.WriteLine("Thumbnail created successfully...");
+                else
+                    Console.WriteLine("Operation was not completed successfully...");
+            }
+        }
+        private void ExecuteCommand(Uri source, string target, uint size, Format format)
+        {
+            Console.WriteLine("Downloading image...");
+            bool success = false;
+            try
+            {
+
+                ThumbnailCreator thumbnailCreator = new ThumbnailCreator();
+                using (Stream sourceStream = thumbnailCreator.CreateThumbnailStreamAsync(size, source, format).Result)
+                {
+                    
+                    if (sourceStream != null)
+                    {
+                        Console.WriteLine("Processing...");
+                        using (FileStream fs = new FileStream(target, FileMode.OpenOrCreate, FileAccess.Write))
+                        {
+                            if (sourceStream.Position != 0)
+                                sourceStream.Position = 0;
+
+                            sourceStream.CopyTo(fs);
+                            success = true;
+                        }
+                    }
+                    else
+                    {
+                        success = false;
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                success = false;
+            }
+            finally
+            {
+                if (success)
                     Console.WriteLine("Thumbnail created successfully...");
                 else
                     Console.WriteLine("Operation was not completed successfully...");
