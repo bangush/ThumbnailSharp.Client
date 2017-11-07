@@ -5,9 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:thumb="clr-namespace:ThumbnailSharp.Gui.Thumbs"
         xmlns:mahapps="http://metro.mahapps.com/winfx/xaml/controls"
-        xmlns:local="clr-namespace:ThumbnailSharp.Gui" Icon="thumb.ico"
-        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" x:Class="ThumbnailSharp.Gui.MainWindow"
-        mc:Ignorable="d"  Title="ThumbnailSharp.GUI" Height="451" Width="511.5" GlowBrush="RoyalBlue"
+        xmlns:local="clr-namespace:ThumbnailSharp.Gui" Icon="Contents\thumb.ico"
+        xmlns:langVm="clr-namespace:ThumbnailSharp.Gui.Languages"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+        x:Class="ThumbnailSharp.Gui.MainWindow"
+        mc:Ignorable="d"  Title="ThumbnailSharp.GUI" Height="479" Width="511.5" GlowBrush="RoyalBlue"
         MinHeight="360" MinWidth="451">
     <mahapps:MetroWindow.Resources>
         <local:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
@@ -22,7 +24,7 @@
             <RowDefinition Height="auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Image Source="core-logo.png" Margin="5" Height="60" HorizontalAlignment="Left"/>
+        <Image Source="Contents\core-logo.png" Margin="5" Height="60" HorizontalAlignment="Left"/>
         <Grid Grid.Row="1" IsEnabled="{Binding IsEditingActive}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
@@ -33,7 +35,7 @@
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
             <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="5">
-                <TextBlock Text="Thumbnail source option:" FontSize="16" Margin="5" VerticalAlignment="Center" Width="180"/>
+                <TextBlock Text="{local:LocalizationResolver TextBlockThumbnailSource}" FontSize="16" Margin="5" VerticalAlignment="Center" Width="190"/>
                 <ComboBox ItemsSource="{Binding Options}" SelectedItem="{Binding ThumbModel.Option}" 
                       Margin="5" Width="150" IsEditable="False" SelectedIndex="0">
                     <i:Interaction.Triggers>
@@ -44,35 +46,69 @@
                 </ComboBox>
             </StackPanel>
             <DockPanel Grid.Row="1" Margin="5" LastChildFill="False">
-                <TextBlock Text="Specify thumbnail size:" Margin="5" DockPanel.Dock="Left" VerticalAlignment="Center" FontSize="16" Width="180" />
+                <TextBlock Text="{local:LocalizationResolver TextBlockThumbnailSize}" Margin="5" DockPanel.Dock="Left" VerticalAlignment="Center" FontSize="16" Width="190" />
                 <mahapps:NumericUpDown Value="{Binding ThumbModel.ThumbnailSize}" Minimum="1" Width="150" DockPanel.Dock="Left" Margin="5"/>
             </DockPanel>
             <DockPanel Grid.Row="2" Margin="5" LastChildFill="False">
-                <TextBlock Text="Specify image format:" Margin="5" DockPanel.Dock="Left" VerticalAlignment="Center" FontSize="16" Width="180" />
+                <TextBlock Text="{local:LocalizationResolver TextBlockImageFormat}" Margin="5" DockPanel.Dock="Left" VerticalAlignment="Center" FontSize="16" Width="190" />
                 <ComboBox SelectedItem="{Binding ThumbModel.Format}" ItemsSource="{Binding Formats}" SelectedIndex="0"
                       Width="150" DockPanel.Dock="Left" Margin="5"/>
             </DockPanel>
 
             <DockPanel Grid.Row="3" Margin="5" Visibility="{Binding IsLocal, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <Button Content="Browse File" Width="85" Height="28" x:Name="buttonBrowse" Click="ButtonBrowseHandler" DockPanel.Dock="Right" Margin="5"/>
-                <TextBox x:Name="textboxLocation" Text="{Binding ThumbModel.Location, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" mahapps:TextBoxHelper.Watermark="Please specify image file" IsReadOnly="True" Margin="5"/>
+                <Button Content="{local:LocalizationResolver ButtonBrowseFile}" Width="85" Height="28" x:Name="buttonBrowse" Click="ButtonBrowseHandler" DockPanel.Dock="Right" Margin="5"/>
+                <TextBox x:Name="textboxLocation" Text="{Binding ThumbModel.Location, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" mahapps:TextBoxHelper.Watermark="{local:LocalizationResolver TextBoxLocationWatermark}" IsReadOnly="True" Margin="5"/>
             </DockPanel>
             <TextBox Text="{Binding ThumbModel.Location, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                  mahapps:TextBoxHelper.Watermark="Please input valid absolute url" 
                  mahapps:TextBoxHelper.ClearTextButton="True"
                  Margin="10" Grid.Row="3" Visibility="{Binding IsInternet, Converter={StaticResource BooleanToVisibilityConverter}}"/>
             <DockPanel Grid.Row="4" Margin="5">
-                <Button Content="Browse" Width="85" Height="28" x:Name="buttonBrowseTarget" Click="ButtonBrowseTargetHandler" DockPanel.Dock="Right" Margin="5"/>
-                <TextBox x:Name="textboxTargetLocation" Text="{Binding ThumbModel.TargetLocation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" mahapps:TextBoxHelper.Watermark="Please specify thumbnail location" IsReadOnly="True" Margin="5"/>
+                <Button Content="{local:LocalizationResolver ButtonBrowseTarget}" Width="85" Height="28" x:Name="buttonBrowseTarget" Click="ButtonBrowseTargetHandler" DockPanel.Dock="Right" Margin="5"/>
+                <TextBox x:Name="textboxTargetLocation" Text="{Binding ThumbModel.TargetLocation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" mahapps:TextBoxHelper.Watermark="{local:LocalizationResolver TextBoxTargetLocationWatermark}" IsReadOnly="True" Margin="5"/>
             </DockPanel>
             <Button Command="{Binding CreateThumbnailCommand}" BorderBrush="RoyalBlue" BorderThickness="1.5" mahapps:ButtonHelper.CornerRadius="15" 
-                    Content="Create Thumbnail" Width="120" Height="30" Margin="10" Grid.Row="5" HorizontalAlignment="Left"/>
+                    Content="{local:LocalizationResolver ButtonCreateThumbnail}" Width="120" Height="30" Margin="10" Grid.Row="5" HorizontalAlignment="Left"/>
         </Grid>
         <mahapps:MetroProgressBar IsIndeterminate="{Binding IsLoading}" Background="Transparent"
                                   Height="30" Grid.Row="2" Margin="5" Foreground="RoyalBlue"/>
-        <TextBlock Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="5">
-            Created by: 
-            <Hyperlink NavigateUri="https://twitter.com/mirzaevolution" RequestNavigate="GoToTwitter">Mirza Ghulam Rasyid</Hyperlink>
-        </TextBlock>
+        <DockPanel Grid.Row="3" Margin="5">
+            <Border Margin="5" DockPanel.Dock="Left">
+                <Border.DataContext>
+                    <langVm:LanguageViewModel/>
+                </Border.DataContext>
+                <ComboBox Width="220" Height="25" ItemsSource="{Binding Languages}" 
+                          SelectedItem="{Binding SelectedLanguage}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SelectionChanged">
+                            <i:InvokeCommandAction Command="{Binding ChangeLanguageCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Image Source="{Binding FlagPath}" Width="64" Margin="2" HorizontalAlignment="Left"/>
+                                <TextBlock Text="{Binding Name}" Margin="2" Grid.Column="1"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </Border>
+            <StackPanel DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                <TextBlock Margin="2">
+                Created by: 
+                <Hyperlink NavigateUri="https://twitter.com/mirzaevolution" RequestNavigate="UrlHandler">Mirza Ghulam Rasyid</Hyperlink>
+                </TextBlock>
+                <TextBlock Margin="2">
+                Licensed under <Hyperlink NavigateUri="https://github.com/mirzaevolution/ThumbnailSharp.Client/blob/master/LICENSE" 
+                                          RequestNavigate="UrlHandler">MIT License</Hyperlink>
+                </TextBlock>
+            </StackPanel>
+        </DockPanel>
+        
     </Grid>
 </mahapps:MetroWindow>

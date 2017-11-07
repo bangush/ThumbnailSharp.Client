@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ThumbnailSharp.Gui.Properties
-{
-
-
+namespace ThumbnailSharp.Gui.Properties {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -19,52 +19,170 @@ namespace ThumbnailSharp.Gui.Properties
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources
-    {
-
+    public class Resources {
+        
         private static global::System.Resources.ResourceManager resourceMan;
-
+        
         private static global::System.Globalization.CultureInfo resourceCulture;
-
+        
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources()
-        {
+        internal Resources() {
         }
-
+        
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager
-        {
-            get
-            {
-                if ((resourceMan == null))
-                {
+        public static global::System.Resources.ResourceManager ResourceManager {
+            get {
+                if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ThumbnailSharp.Gui.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
             }
         }
-
+        
         /// <summary>
         ///   Overrides the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture
-        {
-            get
-            {
+        public static global::System.Globalization.CultureInfo Culture {
+            get {
                 return resourceCulture;
             }
-            set
-            {
+            set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Browse File.
+        /// </summary>
+        public static string ButtonBrowseFile {
+            get {
+                return ResourceManager.GetString("ButtonBrowseFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Browse.
+        /// </summary>
+        public static string ButtonBrowseTarget {
+            get {
+                return ResourceManager.GetString("ButtonBrowseTarget", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create Thumbnail.
+        /// </summary>
+        public static string ButtonCreateThumbnail {
+            get {
+                return ResourceManager.GetString("ButtonCreateThumbnail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Directory `{0}` for target location cannot be found.
+        /// </summary>
+        public static string DirectoryNotFoundError {
+            get {
+                return ResourceManager.GetString("DirectoryNotFoundError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error(s) occured:.
+        /// </summary>
+        public static string ErrorDescription {
+            get {
+                return ResourceManager.GetString("ErrorDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File `{0}` doesn&apos;t exist.
+        /// </summary>
+        public static string FileNotFoundError {
+            get {
+                return ResourceManager.GetString("FileNotFoundError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Operation was not completed successfully.
+        /// </summary>
+        public static string OnCompletedFailed {
+            get {
+                return ResourceManager.GetString("OnCompletedFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thumbnail created successfully.
+        /// </summary>
+        public static string OnCompletedSuccessful {
+            get {
+                return ResourceManager.GetString("OnCompletedSuccessful", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Image format:.
+        /// </summary>
+        public static string TextBlockImageFormat {
+            get {
+                return ResourceManager.GetString("TextBlockImageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thumbnail size:.
+        /// </summary>
+        public static string TextBlockThumbnailSize {
+            get {
+                return ResourceManager.GetString("TextBlockThumbnailSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thumbnail source option:.
+        /// </summary>
+        public static string TextBlockThumbnailSource {
+            get {
+                return ResourceManager.GetString("TextBlockThumbnailSource", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please specify image file.
+        /// </summary>
+        public static string TextBoxLocationWatermark {
+            get {
+                return ResourceManager.GetString("TextBoxLocationWatermark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please specify thumbnail location.
+        /// </summary>
+        public static string TextBoxTargetLocationWatermark {
+            get {
+                return ResourceManager.GetString("TextBoxTargetLocationWatermark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please specify valid url address with scheme.\nEg: http://address.com/data.jpg or https://address.com/data.jpg.
+        /// </summary>
+        public static string UrlError {
+            get {
+                return ResourceManager.GetString("UrlError", resourceCulture);
             }
         }
     }

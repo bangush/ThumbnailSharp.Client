@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ThumbnailSharp.Gui.Thumbs
 {
@@ -12,7 +8,10 @@ namespace ThumbnailSharp.Gui.Thumbs
     {
         public ThumbViewModel()
         {
-            ThumbModel = new ThumbModel();
+            ThumbModel = new ThumbModel()
+            {
+                ThumbnailSize = 100
+            };
             CreateThumbnailCommand = new RelayCommand(OnCreateThumbnail, CanCreateThumbnail);
             TriggerOptionCommand = new RelayCommand(OnTriggerOption);
             IsLocal = true;
@@ -151,11 +150,13 @@ namespace ThumbnailSharp.Gui.Thumbs
         private async void HandleLocalRequest()
         {
             if(!File.Exists(ThumbModel.Location))
-                OnError($"File `{ThumbModel.Location}` doesn't exist.");
+                OnError(string.Format(LanguageResource.Instance["FileNotFoundError"], ThumbModel.Location));
             else
             {
+               
+                string errorDescription = LanguageResource.Instance["ErrorDescription"];
                 if (!Directory.Exists(Path.GetDirectoryName(ThumbModel.TargetLocation)))
-                    OnError($"Directory `{Path.GetDirectoryName(ThumbModel.TargetLocation)}` for target location cannot be found");
+                    OnError(string.Format(LanguageResource.Instance["DirectoryNotFoundError"], Path.GetDirectoryName(ThumbModel.TargetLocation)));
                 else
                 {
                     Format format = GetFormat(ThumbModel.Format.ToLower());
@@ -184,15 +185,18 @@ namespace ThumbnailSharp.Gui.Thumbs
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine(ex.Message);
+                        errorDescription += $"\n{ex.Message}\n";
                         success = false;
                     }
                     finally
                     {
                         if (success)
-                            OnCompleted("Thumbnail created successfully");
+                            OnCompleted(LanguageResource.Instance["OnCompletedSuccessful"]);
                         else
-                            OnCompleted("Operation was not completed successfully");
+                        {
+                            string message = errorDescription + "\n" + LanguageResource.Instance["OnCompletedFailed"];
+                            OnCompleted(message);
+                        }
                     }
 
                 }
@@ -201,12 +205,14 @@ namespace ThumbnailSharp.Gui.Thumbs
         private async void HandleInternetRequest()
         {
             if (!Uri.IsWellFormedUriString(ThumbModel.Location, UriKind.Absolute))
-                OnError("Please specify valid url address with scheme.\nEg: http://address.com/data.jpg or https://address.com/data.jpg");
+                OnError(LanguageResource.Instance["UrlError"]);
             
             else
             {
+                string errorDescription = LanguageResource.Instance["ErrorDescription"];
+
                 if (!Directory.Exists(Path.GetDirectoryName(ThumbModel.TargetLocation)))
-                    OnError($"Directory `{Path.GetDirectoryName(ThumbModel.TargetLocation)}` for target location cannot be found");
+                    OnError(string.Format(LanguageResource.Instance["DirectoryNotFoundError"], Path.GetDirectoryName(ThumbModel.TargetLocation)));
                 else
                 {
                     Format format = GetFormat(ThumbModel.Format.ToLower());
@@ -235,15 +241,18 @@ namespace ThumbnailSharp.Gui.Thumbs
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine(ex.Message);
+                        errorDescription += $"\n{ex.Message}\n";
                         success = false;
                     }
                     finally
                     {
                         if (success)
-                            OnCompleted("Thumbnail created successfully");
+                            OnCompleted(LanguageResource.Instance["OnCompletedSuccessful"]);
                         else
-                            OnCompleted("Operation was not completed successfully");
+                        {
+                            string message = errorDescription + "\n" + LanguageResource.Instance["OnCompletedFailed"];
+                            OnCompleted(message);
+                        }
                     }
 
                 }

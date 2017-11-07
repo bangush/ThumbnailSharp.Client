@@ -2,12 +2,16 @@
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using Microsoft.Win32;
+using System.IO;
+using System;
+
 namespace ThumbnailSharp.Gui
 {
     public partial class MainWindow : MetroWindow
     {
         public MainWindow()
         {
+            HandleLocalization();
             InitializeComponent();
         }
 
@@ -50,9 +54,34 @@ namespace ThumbnailSharp.Gui
             }
         }
 
-        private void GoToTwitter(object sender, System.Windows.Navigation.RequestNavigateEventArgs e)
+        private void UrlHandler(object sender, System.Windows.Navigation.RequestNavigateEventArgs e)
         {
             System.Diagnostics.Process.Start(e.Uri.ToString());
         }
+        
+        private void HandleLocalization()
+        {
+            try
+            {
+                if (File.Exists("lang.dat"))
+                {
+                    string shortName = "";
+                    using (StreamReader reader = new StreamReader("lang.dat"))
+                    {
+                        shortName = reader.ReadToEnd();
+                    }
+                    if (!String.IsNullOrEmpty(shortName))
+                        LanguageResource.Instance.CurrentCulture = new System.Globalization.CultureInfo(shortName);
+                    else
+                        LanguageResource.Instance.CurrentCulture = new System.Globalization.CultureInfo("en-US");
+                }
+                else
+                {
+                    LanguageResource.Instance.CurrentCulture = new System.Globalization.CultureInfo("en-US");
+                }
+            }
+            catch { LanguageResource.Instance.CurrentCulture = new System.Globalization.CultureInfo("en-US"); }
+        }
+
     }
 }

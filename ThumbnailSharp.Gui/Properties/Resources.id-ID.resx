@@ -118,45 +118,45 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ButtonBrowseFile" xml:space="preserve">
-    <value>Browse File</value>
+    <value>Pilih File</value>
   </data>
   <data name="ButtonBrowseTarget" xml:space="preserve">
-    <value>Browse</value>
+    <value>Pilih</value>
   </data>
   <data name="ButtonCreateThumbnail" xml:space="preserve">
-    <value>Create Thumbnail</value>
+    <value>Buat Thumbnail</value>
   </data>
   <data name="DirectoryNotFoundError" xml:space="preserve">
-    <value>Directory `{0}` for target location cannot be found</value>
+    <value>Direktori `{0}` tidak ditemukan</value>
   </data>
   <data name="ErrorDescription" xml:space="preserve">
-    <value>Error(s) occured:</value>
+    <value>Terjadi kesalahan:</value>
   </data>
   <data name="FileNotFoundError" xml:space="preserve">
-    <value>File `{0}` doesn't exist</value>
+    <value>File `{0}` tidak ditemukan</value>
   </data>
   <data name="OnCompletedFailed" xml:space="preserve">
-    <value>Operation was not completed successfully</value>
+    <value>Operaasi gagal</value>
   </data>
   <data name="OnCompletedSuccessful" xml:space="preserve">
-    <value>Thumbnail created successfully</value>
+    <value>Thumbnail berhasil dibuat</value>
   </data>
   <data name="TextBlockImageFormat" xml:space="preserve">
-    <value>Image format:</value>
+    <value>Format gambar:</value>
   </data>
   <data name="TextBlockThumbnailSize" xml:space="preserve">
-    <value>Thumbnail size:</value>
+    <value>Ukuran thumbnail:</value>
   </data>
   <data name="TextBlockThumbnailSource" xml:space="preserve">
-    <value>Thumbnail source option:</value>
+    <value>Opsi sumber thumbnail:</value>
   </data>
   <data name="TextBoxLocationWatermark" xml:space="preserve">
-    <value>Please specify image file</value>
+    <value>Tentukan file gambar</value>
   </data>
   <data name="TextBoxTargetLocationWatermark" xml:space="preserve">
-    <value>Please specify thumbnail location</value>
+    <value>Tentukan lokasi penyimpanan thumbnail</value>
   </data>
   <data name="UrlError" xml:space="preserve">
-    <value>Please specify valid url address with scheme.\nEg: http://address.com/data.jpg or https://address.com/data.jpg</value>
+    <value>Tentukan alamat url valid dengan skema.\nEg: http://address.com/data.jpg atau https://address.com/data.jpg</value>
   </data>
 </root>
