@@ -50,12 +50,14 @@
     <Content Include="Samples\Internet\proportional-thumbnail.jpg" />
     <Content Include="Samples\Internet\proportional-thumbnail.png" />
     <Content Include="Samples\Internet\proportional-thumbnail.tiff" />
+    <Content Include="Samples\Local\landscape-thumbnail-450.jpg" />
     <Content Include="Samples\Local\landscape-thumbnail.bmp" />
     <Content Include="Samples\Local\landscape-thumbnail.gif" />
     <Content Include="Samples\Local\landscape-thumbnail.jpg" />
     <Content Include="Samples\Local\landscape-thumbnail.png" />
     <Content Include="Samples\Local\landscape-thumbnail.tiff" />
     <Content Include="Samples\Local\landscape.jpg" />
+    <Content Include="Samples\Local\portrait-thumbnail-450.jpg" />
     <Content Include="Samples\Local\portrait-thumbnail.bmp" />
     <Content Include="Samples\Local\portrait-thumbnail.gif" />
     <Content Include="Samples\Local\portrait-thumbnail.jpg" />
