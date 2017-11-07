@@ -8,11 +8,11 @@ using System.Windows;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("ThumbnailSharp.Gui")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("A simple program to create an image thumbnail from various sources with many formats.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Mirza Ghulam Rasyid")]
 [assembly: AssemblyProduct("ThumbnailSharp.Gui")]
-[assembly: AssemblyCopyright("Copyright ©  2017")]
+[assembly: AssemblyCopyright("Copyright ©  2017 Mirza Ghulam Rasyid")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

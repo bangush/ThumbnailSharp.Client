@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("ThumbnailSharp.Cli")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("A simple program to create an image thumbnail from various sources with many formats using command line interface")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Mirza Ghulam Rasyid")]
 [assembly: AssemblyProduct("ThumbnailSharp.Cli")]
-[assembly: AssemblyCopyright("Copyright ©  2017")]
+[assembly: AssemblyCopyright("Copyright ©  2017 Mirza Ghulam Rasyid")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
