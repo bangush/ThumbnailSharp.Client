@@ -10,7 +10,7 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
         x:Class="ThumbnailSharp.Gui.MainWindow"
         mc:Ignorable="d"  Title="ThumbnailSharp.GUI" Height="479" Width="511.5" GlowBrush="RoyalBlue"
-        MinHeight="360" MinWidth="451">
+        MinHeight="479" MinWidth="511.5">
     <mahapps:MetroWindow.Resources>
         <local:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
     </mahapps:MetroWindow.Resources>
@@ -73,7 +73,7 @@
         <mahapps:MetroProgressBar IsIndeterminate="{Binding IsLoading}" Background="Transparent"
                                   Height="30" Grid.Row="2" Margin="5" Foreground="RoyalBlue"/>
         <DockPanel Grid.Row="3" Margin="5">
-            <Border Margin="5" DockPanel.Dock="Left">
+            <Border Margin="5" DockPanel.Dock="Left" VerticalAlignment="Bottom">
                 <Border.DataContext>
                     <langVm:LanguageViewModel/>
                 </Border.DataContext>
