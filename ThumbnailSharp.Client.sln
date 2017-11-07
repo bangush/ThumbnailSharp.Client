@@ -9,60 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThumbnailSharp.Gui", "Thumb
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "ThumbnailSharp.Clients", "ThumbnailSharp.Clients\ThumbnailSharp.Clients.vdproj", "{C463A08B-9D51-4770-A13C-D0B84B887B85}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{D4ED788A-55F7-4940-A14B-EED5CD813BF3}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Screenshoots", "Screenshoots", "{42D92ED7-E9BE-4C45-8C86-E3D10A911506}"
-	ProjectSection(SolutionItems) = preProject
-		C:\Users\skyline\Pictures\thumbnailsharp\thumbnailsharp-cli.PNG = C:\Users\skyline\Pictures\thumbnailsharp\thumbnailsharp-cli.PNG
-		C:\Users\skyline\Pictures\thumbnailsharp\thumbnailsharp-gui1.PNG = C:\Users\skyline\Pictures\thumbnailsharp\thumbnailsharp-gui1.PNG
-		C:\Users\skyline\Pictures\thumbnailsharp\thumbnailsharp-gui2.PNG = C:\Users\skyline\Pictures\thumbnailsharp\thumbnailsharp-gui2.PNG
-		C:\Users\skyline\Pictures\thumbnailsharp\thumbnailsharp-gui3.PNG = C:\Users\skyline\Pictures\thumbnailsharp\thumbnailsharp-gui3.PNG
-		C:\Users\skyline\Pictures\thumbnailsharp\thumbnailsharp-gui4.PNG = C:\Users\skyline\Pictures\thumbnailsharp\thumbnailsharp-gui4.PNG
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Results", "Results", "{98E0EF66-8333-4AE5-8E1C-8428322C5505}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Local", "Local", "{BF91085D-26C8-4ED5-A962-EA7CB44B95A5}"
-	ProjectSection(SolutionItems) = preProject
-		E:\sample-images\local\landscape-thumbnail.bmp = E:\sample-images\local\landscape-thumbnail.bmp
-		E:\sample-images\local\landscape-thumbnail.gif = E:\sample-images\local\landscape-thumbnail.gif
-		E:\sample-images\local\landscape-thumbnail.jpg = E:\sample-images\local\landscape-thumbnail.jpg
-		E:\sample-images\local\landscape-thumbnail.png = E:\sample-images\local\landscape-thumbnail.png
-		E:\sample-images\local\landscape-thumbnail.tiff = E:\sample-images\local\landscape-thumbnail.tiff
-		E:\sample-images\local\landscape.jpg = E:\sample-images\local\landscape.jpg
-		E:\sample-images\local\portrait-thumbnail.bmp = E:\sample-images\local\portrait-thumbnail.bmp
-		E:\sample-images\local\portrait-thumbnail.gif = E:\sample-images\local\portrait-thumbnail.gif
-		E:\sample-images\local\portrait-thumbnail.jpg = E:\sample-images\local\portrait-thumbnail.jpg
-		E:\sample-images\local\portrait-thumbnail.png = E:\sample-images\local\portrait-thumbnail.png
-		E:\sample-images\local\portrait-thumbnail.tiff = E:\sample-images\local\portrait-thumbnail.tiff
-		E:\sample-images\local\portrait.jpg = E:\sample-images\local\portrait.jpg
-		E:\sample-images\local\proportional-thumbnail.bmp = E:\sample-images\local\proportional-thumbnail.bmp
-		E:\sample-images\local\proportional-thumbnail.gif = E:\sample-images\local\proportional-thumbnail.gif
-		E:\sample-images\local\proportional-thumbnail.jpg = E:\sample-images\local\proportional-thumbnail.jpg
-		E:\sample-images\local\proportional-thumbnail.png = E:\sample-images\local\proportional-thumbnail.png
-		E:\sample-images\local\proportional-thumbnail.tiff = E:\sample-images\local\proportional-thumbnail.tiff
-		E:\sample-images\local\proportional.jpg = E:\sample-images\local\proportional.jpg
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Internet", "Internet", "{BB7B8E4E-9E5E-4C54-95B9-F757F5018A50}"
-	ProjectSection(SolutionItems) = preProject
-		E:\sample-images\internet\landscape-thumbnail.bmp = E:\sample-images\internet\landscape-thumbnail.bmp
-		E:\sample-images\internet\landscape-thumbnail.gif = E:\sample-images\internet\landscape-thumbnail.gif
-		E:\sample-images\internet\landscape-thumbnail.jpg = E:\sample-images\internet\landscape-thumbnail.jpg
-		E:\sample-images\internet\landscape-thumbnail.png = E:\sample-images\internet\landscape-thumbnail.png
-		E:\sample-images\internet\landscape-thumbnail.tiff = E:\sample-images\internet\landscape-thumbnail.tiff
-		E:\sample-images\internet\portrait-thumnail.bmp = E:\sample-images\internet\portrait-thumnail.bmp
-		E:\sample-images\internet\portrait-thumnail.gif = E:\sample-images\internet\portrait-thumnail.gif
-		E:\sample-images\internet\portrait-thumnail.jpg = E:\sample-images\internet\portrait-thumnail.jpg
-		E:\sample-images\internet\portrait-thumnail.png = E:\sample-images\internet\portrait-thumnail.png
-		E:\sample-images\internet\portrait-thumnail.tiff = E:\sample-images\internet\portrait-thumnail.tiff
-		E:\sample-images\internet\proportional-thumbnail.bmp = E:\sample-images\internet\proportional-thumbnail.bmp
-		E:\sample-images\internet\proportional-thumbnail.gif = E:\sample-images\internet\proportional-thumbnail.gif
-		E:\sample-images\internet\proportional-thumbnail.jpg = E:\sample-images\internet\proportional-thumbnail.jpg
-		E:\sample-images\internet\proportional-thumbnail.png = E:\sample-images\internet\proportional-thumbnail.png
-		E:\sample-images\internet\proportional-thumbnail.tiff = E:\sample-images\internet\proportional-thumbnail.tiff
-		sample-urls.txt = sample-urls.txt
-	EndProjectSection
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AllSamples", "AllSamples\AllSamples.csproj", "{5EEAF4AD-719E-43E2-9E8A-183413B276B9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -80,15 +27,13 @@ Global
 		{0A8F8716-6E72-45CC-ADDB-4C5FD2D07744}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C463A08B-9D51-4770-A13C-D0B84B887B85}.Debug|Any CPU.ActiveCfg = Debug
 		{C463A08B-9D51-4770-A13C-D0B84B887B85}.Release|Any CPU.ActiveCfg = Release
+		{5EEAF4AD-719E-43E2-9E8A-183413B276B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EEAF4AD-719E-43E2-9E8A-183413B276B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5EEAF4AD-719E-43E2-9E8A-183413B276B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5EEAF4AD-719E-43E2-9E8A-183413B276B9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{42D92ED7-E9BE-4C45-8C86-E3D10A911506} = {D4ED788A-55F7-4940-A14B-EED5CD813BF3}
-		{98E0EF66-8333-4AE5-8E1C-8428322C5505} = {D4ED788A-55F7-4940-A14B-EED5CD813BF3}
-		{BF91085D-26C8-4ED5-A962-EA7CB44B95A5} = {98E0EF66-8333-4AE5-8E1C-8428322C5505}
-		{BB7B8E4E-9E5E-4C54-95B9-F757F5018A50} = {98E0EF66-8333-4AE5-8E1C-8428322C5505}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {096D6712-7F34-4544-AF31-B64BEEEEAD8B}
