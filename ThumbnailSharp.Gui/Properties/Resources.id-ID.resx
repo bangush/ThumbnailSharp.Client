@@ -136,7 +136,7 @@
     <value>File `{0}` tidak ditemukan</value>
   </data>
   <data name="OnCompletedFailed" xml:space="preserve">
-    <value>Operaasi gagal</value>
+    <value>Operasi gagal</value>
   </data>
   <data name="OnCompletedSuccessful" xml:space="preserve">
     <value>Thumbnail berhasil dibuat</value>
