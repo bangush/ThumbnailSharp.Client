@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
 
@@ -81,11 +82,12 @@ namespace ThumbnailSharp.Gui.Languages
                 HandleSave();
             }
         }
+        private readonly string LanguageDataLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData, Environment.SpecialFolderOption.Create), "lang.dat");
         private async void HandleSave()
         {
             try
             {
-                using (StreamWriter writer = new StreamWriter("lang.dat"))
+                using (StreamWriter writer = new StreamWriter(LanguageDataLocation))
                 {
                     await writer.WriteAsync(SelectedLanguage.ShortName);
                 }

@@ -1,0 +1,8 @@
+sample landscape:
+ http://www.planwallpaper.com/static/images/Coconut-Tree-at-Beach-Nature-Wallpaper.jpg
+
+sample portrait:
+http://iphonewalls.net/wp-content/uploads/2014/07/Beautiful%20Sunrise%20Over%20Clouds%20Airplane%20View%20iPhone%205%20Wallpaper.jpg
+
+sample proportional:
+http://www.car-brand-names.com/wp-content/uploads/2015/03/Lamborghini-Logo.png

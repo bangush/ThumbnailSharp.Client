@@ -9,6 +9,7 @@ namespace ThumbnailSharp.Gui
 {
     public partial class MainWindow : MetroWindow
     {
+        private readonly string LanguageDataLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData, Environment.SpecialFolderOption.Create), "lang.dat");
         public MainWindow()
         {
             HandleLocalization();
@@ -63,10 +64,10 @@ namespace ThumbnailSharp.Gui
         {
             try
             {
-                if (File.Exists("lang.dat"))
+                if (File.Exists(LanguageDataLocation))
                 {
                     string shortName = "";
-                    using (StreamReader reader = new StreamReader("lang.dat"))
+                    using (StreamReader reader = new StreamReader(LanguageDataLocation))
                     {
                         shortName = reader.ReadToEnd();
                     }
