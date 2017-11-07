@@ -1,5 +1,5 @@
 # ThumbnailSharp.Client
-ThumbnailSharp.Client project has two main softwares, **ThumbnailSharp.Cli (Command Line Version)** and **ThumbnailSharp.Gui (GUI Version).** These softwares are used to create a thumbnail from an image either local or from internet utilizing our **[ThumbnailSharp](https://github.com/mirzaevolution/ThumbnailSharp)** library. For the gui version, it's utilizing WPF with MVVM-pattern and the power of asynchronous programming (for responsiveness). 
+ThumbnailSharp.Client project has two main softwares, **ThumbnailSharp.Cli (Command Line Version)** and **ThumbnailSharp.Gui (GUI Version).** These softwares are used to create a thumbnail from an image either local or from internet utilizing our **[ThumbnailSharp](https://github.com/mirzaevolution/ThumbnailSharp)** library. For the gui version, it's utilizing WPF with MVVM-pattern. 
 
 Here are some screenshots of our softwares:
 
