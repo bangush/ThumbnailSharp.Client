@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace ThumbnailSharp.Gui.Thumbs
 {
@@ -124,13 +125,13 @@ namespace ThumbnailSharp.Gui.Thumbs
                 IsInternet = true;
             }
         }
-        private void OnCreateThumbnail()
+        private async void OnCreateThumbnail()
         {
             IsEditingActive = false;
             IsLoading = true;
             if(ThumbModel.Option == "Local")
             {
-                HandleLocalRequest();
+                await HandleLocalRequest();
             }
             else
             {
@@ -147,7 +148,7 @@ namespace ThumbnailSharp.Gui.Thumbs
                 return false;
             return true;
         }
-        private async void HandleLocalRequest()
+        private async Task HandleLocalRequest()
         {
             if(!File.Exists(ThumbModel.Location))
                 OnError(string.Format(LanguageResource.Instance["FileNotFoundError"], ThumbModel.Location));
@@ -163,24 +164,27 @@ namespace ThumbnailSharp.Gui.Thumbs
                     bool success = false;
                     try
                     {
-                        using (Stream sourceStream = new ThumbnailCreator().CreateThumbnailStream(ThumbModel.ThumbnailSize, ThumbModel.Location, format))
+                        await Task.Run(async() =>
                         {
-                            if (sourceStream != null)
+                            using (Stream sourceStream = new ThumbnailCreator().CreateThumbnailStream(ThumbModel.ThumbnailSize, ThumbModel.Location, format))
                             {
-                                using (FileStream fs = new FileStream(ThumbModel.TargetLocation, FileMode.OpenOrCreate, FileAccess.Write))
+                                if (sourceStream != null)
                                 {
-                                    if (sourceStream.Position != 0)
-                                        sourceStream.Position = 0;
+                                    using (FileStream fs = new FileStream(ThumbModel.TargetLocation, FileMode.OpenOrCreate, FileAccess.Write))
+                                    {
+                                        if (sourceStream.Position != 0)
+                                            sourceStream.Position = 0;
 
-                                    await sourceStream.CopyToAsync(fs);
-                                    success = true;
+                                        await sourceStream.CopyToAsync(fs);
+                                        success = true;
+                                    }
+                                }
+                                else
+                                {
+                                    success = false;
                                 }
                             }
-                            else
-                            {
-                                success = false;
-                            }
-                        }
+                        });
 
                     }
                     catch (Exception ex)
